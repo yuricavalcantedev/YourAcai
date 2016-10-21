@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:text="Finalizar Compra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="22dp"
+        android:id="@+id/textView16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light" />
+
+    <RadioButton
+        android:text="R$ 2,00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rb_taxa_entrega_valor_1"
+        android:layout_toEndOf="@+id/textView16"
+        android:id="@+id/rb_taxa_entrega_valor_2"
+        android:textColor="@android:color/background_light"
+        tools:text="R$ 2,00"
+        android:visibility="invisible"/>
+
+
+    <TextView
+        android:text="Forma de Pagamento:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView16"
+        android:layout_alignStart="@+id/cb_taxa_entrega"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/background_light" />
+
+    <RadioButton
+        android:text="À Vista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="13dp"
+        android:id="@+id/rb_pagamento_avista"
+        android:textColor="@android:color/background_light" />
+
+    <RadioButton
+        android:text="Cartão"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rb_pagamento_avista"
+        android:layout_toEndOf="@+id/textView16"
+        android:id="@+id/rb_pagamento_cartao"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:text="Troco para :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_below="@+id/rb_pagamento_avista"
+        android:layout_alignStart="@+id/rb_pagamento_avista"
+        android:layout_marginTop="17dp"
+        android:id="@+id/tv_troco_para"
+        android:textColor="@android:color/background_light" />
+
+    <CheckBox
+        android:text="Taxa de Entrega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_taxa_entrega"
+        android:textColor="@android:color/background_light"
+        android:checked="false"
+        android:layout_below="@+id/et_dialog_troco_para"
+        android:layout_toStartOf="@+id/rb_pagamento_cartao"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:background="@drawable/drawable_edit_text_fundo_branco"
+        android:id="@+id/et_dialog_troco_para"
+        android:layout_width="100dp"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/tv_troco_para"
+        android:layout_alignEnd="@+id/rb_pagamento_cartao" />
+
+    <TextView
+        android:text="Total:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/rb_taxa_entrega_valor_1"
+        android:id="@+id/textView10"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/rb_taxa_entrega_valor_1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:text=" "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tv_texto_dialog_troco_cliente"
+        android:layout_alignStart="@+id/tv_dialog_total"
+        android:id="@+id/tv_dialog_troco_cliente"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:text="Troco  Cliente :"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_texto_dialog_troco_cliente"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/textView10"
+        android:layout_marginBottom="20dp"
+        android:layout_alignStart="@+id/textView10" />
+
+    <RadioButton
+        android:text="R$ 1,00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rb_taxa_entrega_valor_1"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/background_light"
+        tools:text="R$ 1,00"
+        android:visibility="invisible"
+        android:layout_below="@+id/cb_taxa_entrega"
+        android:layout_alignStart="@+id/cb_taxa_entrega" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_dialog_total"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:layout_above="@+id/tv_texto_dialog_troco_cliente"
+        android:layout_alignEnd="@+id/et_dialog_troco_para"
+        android:layout_marginEnd="12dp" />
+
+    <TextView
+        android:text=" "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_dialog_troco_cliente"
+        android:layout_alignStart="@+id/tv_texto_dialog_troco_cliente"
+        android:id="@+id/tv_dialog_aviso"
+        android:layout_marginBottom="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light" />
+
+
+</RelativeLayout>

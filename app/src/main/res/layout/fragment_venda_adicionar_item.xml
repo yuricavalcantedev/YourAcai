@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentStart="true">-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" >-->
+
+        <!-- TextView Categoria do Produto -->
+        <TextView
+            android:text="Categoria do Item:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/textView17"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/black" />
+
+        <!-- Spinner Categoria -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinner_categoria_item"
+            android:layout_below="@+id/textView17"
+            android:layout_alignStart="@+id/textView17"
+            android:entries="@array/categorias_item"
+            android:layout_marginRight="10dp"
+            android:layout_height="30dp" />
+
+        <!-- TextView Escolha o Produto -->
+        <TextView
+            android:text="Escolha o Item:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_categoria_item"
+            android:layout_alignStart="@+id/spinner_categoria_item"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textView20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black" />
+
+        <!-- Spinner Produto -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spinner_item"
+            android:textAlignment="center"
+            android:layout_marginRight="10dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/textView20"
+            android:layout_alignStart="@+id/textView20" />
+
+        <!-- TextView Quantidade do Produto -->
+        <TextView
+            android:text="Quantidade:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner_item"
+            android:layout_alignStart="@+id/textView20"
+            android:layout_marginTop="13dp"
+            android:id="@+id/textView21"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black" />
+
+        <!-- Spinner Quantidade -->
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_below="@+id/textView21"
+            android:layout_marginRight="10dp"
+            android:layout_alignStart="@+id/textView21"
+            android:id="@+id/spinner_quantidade_item"
+            android:layout_height="30dp" />
+
+        <!-- Divider Top -->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:id="@+id/view_divider_top"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/spinner_quantidade_item"
+            android:layout_alignParentStart="true" />
+
+        <!-- TextView Infomações -->
+        <TextView
+            android:text="Informações do Produto:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:id="@+id/textView22"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_below="@+id/view_divider_top"
+            android:layout_alignStart="@+id/spinner_quantidade_item" />
+
+        <!-- Button Adicionar Produto -->
+        <Button
+            android:text="Adicionar Item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#43A047"
+            android:textColor="@android:color/background_light"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bt_adicionar_item" />
+
+        <!-- TextView Nome Produto -->
+        <TextView
+            android:text=" "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="49dp"
+            android:layout_marginTop="259dp"
+            android:id="@+id/tv_nome_item"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <!-- TextView Quantidade Produto -->
+        <TextView
+            android:text=" "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="259dp"
+            android:id="@+id/tv_quantidade_item"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <!-- TextView Valor total Produto -->
+        <TextView
+            android:text=" "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/tv_nome_item"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/tv_total_item"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+ <!---->
+    <!--</RelativeLayout>-->
+
+
+    <!--</ScrollView>-->
+
+
+</RelativeLayout>

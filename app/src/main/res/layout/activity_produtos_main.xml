@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_produtos_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#9370DB"
+    tools:context="com.yuri.youracai.ProdutosMain">
+
+
+    <TextView
+        android:text="Adicionar Produto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img_add_produto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:id="@+id/textView4"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/background_light"
+        android:fontFamily="monospace" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_ver_produtos"
+        android:layout_marginTop="33dp"
+        android:id="@+id/img_ver_produtos"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_add_produto"
+        android:layout_marginTop="129dp"
+        android:id="@+id/img_add_produto"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/img_ver_produtos" />
+
+    <TextView
+        android:text="Ver e Deletar Produtos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/background_light"
+        android:fontFamily="monospace"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/img_ver_produtos"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="17dp" />
+
+</RelativeLayout>

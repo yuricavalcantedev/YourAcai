@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    READ-ME...
+
+    1 - Sempre que for adicionar uma classe que seja ORM, fazer os seguintes passos:
+        - Adicionar ela no 'Models' do manifest
+        - Incrementar uma versão do banco no manifest
+
+    2 - Lembrar de mudar o layout do login, para depois de ser cadastrado, mostrar um "link" para lembrar as credenciais.
+
+</resources>

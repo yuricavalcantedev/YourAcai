@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Your Acai</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_drawer_abrir_caixa">Abrir caixa</string>
+    <string name="menu_drawer_produtos">Produtos</string>
+    <string name="menu_drawer_fechar_caixa">Fechar caixa</string>
+    <string name="menu_drawer_perfil">Perfil</string>
+    <string name="menu_drawer_venda">Nova Venda</string>
+    <string name="menu_drawer_configuracoes">Configurações</string>
+
+    <string name="preference_login">Salvar Informações</string>
+    <string name="preference_fez_cadastro">Cadastro Realizado</string>
+    <string name="preference_fill_banco">Primeira Vez Em Execução</string>
+
+    <string-array name="categorias_item">
+        <item>Açai</item>
+        <item>Creme</item>
+        <item>Sanduíche Natural</item>
+        <item>Salada de Fruta</item>
+        <item>Adicional de Fruta</item>
+        <item>Adicional de Calda</item>
+        <item>Adicional Condimento</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="list_item_quantidade">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string name="title_activity_venda">VendaActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+
+</resources>

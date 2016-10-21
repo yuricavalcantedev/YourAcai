@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_abrir_caixa"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_drawer_abrir_caixa" />
+        <item
+            android:id="@+id/nav_venda"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_drawer_venda" />
+
+        <item
+            android:id="@+id/nav_produtos"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_drawer_produtos" />
+
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_drawer_perfil" />
+
+        <item
+            android:id="@+id/nav_configuracoes"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_drawer_configuracoes" />
+        <item
+            android:id="@+id/nav_fechar_caixa"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_drawer_fechar_caixa" />
+    </group>
+
+
+</menu>
