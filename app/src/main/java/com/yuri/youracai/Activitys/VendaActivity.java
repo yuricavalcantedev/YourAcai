@@ -14,6 +14,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.yuri.youracai.Dominio.ItemVendido;
@@ -24,6 +25,8 @@ import com.yuri.youracai.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.activeandroid.Cache.getContext;
+import static com.yuri.youracai.Activitys.FragmentVendaListaItens.mAdapter;
 import static com.yuri.youracai.R.id.recyclerView;
 
 public class VendaActivity extends AppCompatActivity  {
@@ -33,6 +36,10 @@ public class VendaActivity extends AppCompatActivity  {
 
     //This is our viewPager
     private ViewPager viewPager;
+
+    private RecyclerView recyclerView;
+
+    private List<ItemVendido> itensList = new ArrayList<>();
 
 
 
@@ -59,13 +66,11 @@ public class VendaActivity extends AppCompatActivity  {
             public void onTabSelected(TabLayout.Tab tab) {
 
                 if(tab.getPosition() == 1)
-                    FragmentVendaListaItens.mAdapter.notifyDataSetChanged();
-
+                    notifyDataChangeMyRecylerView();
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
 
             }
 
@@ -78,6 +83,17 @@ public class VendaActivity extends AppCompatActivity  {
 
     }
 
+    private void notifyDataChangeMyRecylerView(){
+
+        //0 é o id da venda que ainda não finalizou.
+        itensList = ItemVendido.getItensVendidosByVenda(0);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mAdapter = new NovoPedidoAdapter(itensList);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(mAdapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

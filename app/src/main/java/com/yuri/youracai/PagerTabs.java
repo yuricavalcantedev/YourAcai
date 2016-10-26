@@ -3,6 +3,7 @@ package com.yuri.youracai;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import com.yuri.youracai.Activitys.FragmentVendaAdicionarItem;
 import com.yuri.youracai.Activitys.FragmentVendaListaItens;
@@ -47,4 +48,6 @@ public class PagerTabs extends FragmentStatePagerAdapter {
     public int getCount() {
         return tabCount;
     }
+
+
 }

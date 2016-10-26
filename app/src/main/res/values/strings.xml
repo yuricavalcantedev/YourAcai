@@ -25,9 +25,6 @@
         <item>Adicional de Fruta</item>
         <item>Adicional de Calda</item>
         <item>Adicional Condimento</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
     </string-array>
 
     <string-array name="list_item_quantidade">

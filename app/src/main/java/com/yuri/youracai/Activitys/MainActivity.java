@@ -122,8 +122,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        return true;
 
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, ProdutosMain.class));
 
         }else if(id == R.id.nav_perfil) {
-            startActivity(new Intent(this, PerfilActivity.class));
+            startActivity(new Intent(this, PerfilFuncionario.class));
         }else if(id == R.id.nav_configuracoes) {
             startActivity(new Intent(this, ConfiguracoesActivity.class));
         }else if(id == R.id.nav_configuracoes) {

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -37,21 +38,26 @@ public class LoginActivity extends AppCompatActivity {
 
         context = this;
 
-        //linha necessária para o 'Active Android' funcionar
+        //I need this line to the 'Active Android' works
         ActiveAndroid.initialize(this);
 
         sharedPreferences = context.getSharedPreferences(getString(R.string.preference_fez_cadastro),MODE_PRIVATE);
-        boolean funcionario_cadastrado = sharedPreferences.getBoolean("Cadastrado",true);
+        boolean funcionario_cadastrado = sharedPreferences.getBoolean("Cadastrado",false);
+
+        TextView tvCadastreAqui = (TextView) findViewById(R.id.tv_cadastre_aqui);
+        tvCadastreAqui.setOnClickListener(onClickCadastreAqui);
 
         if(funcionario_cadastrado){
             TextView tv_cadastrado = (TextView) findViewById(R.id.tv_cadastrado_login);
             tv_cadastrado.setText("Esqueceu seus dados?");
 
+            tvCadastreAqui.setOnClickListener(onClickEsqueceuDados);
+
         }
 
         //enche o banco na primeira vez que o app for executado.
         sharedPreferences = context.getSharedPreferences(getString(R.string.preference_fill_banco),MODE_PRIVATE);
-        boolean app_executado = sharedPreferences.getBoolean("Executado",true);
+        boolean app_executado = sharedPreferences.getBoolean("Executado",false);
 
         //na primeira vez que for executado, ele entra no if, depois não entra mais.
         if(!app_executado) {
@@ -63,8 +69,7 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        TextView tvCadastreAqui = (TextView) findViewById(R.id.tv_cadastre_aqui);
-        tvCadastreAqui.setOnClickListener(onClickCadastreAqui);
+
 
         Button btLogin = (Button)findViewById(R.id.bt_login);
         btLogin.setOnClickListener(onClickLogin);
@@ -74,19 +79,22 @@ public class LoginActivity extends AppCompatActivity {
 
         //se o usuário ainda não tiver alterado nenhuma vez o valor, o valor padrão é false.
         sharedPreferences = context.getSharedPreferences(getString(R.string.preference_login),MODE_PRIVATE);
-        boolean opcUsuario = sharedPreferences.getBoolean("Salvar",true);
+        boolean opcUsuario = sharedPreferences.getBoolean("Salvar",false);
 
         //se não for verdade, não precisa mudar nada, por que por padrão a view já inicia desabilitada
         if(opcUsuario){
-            cbSalvarInformacoes.setEnabled(true);
+
+            cbSalvarInformacoes.setChecked(true);
 
             TextInputLayout tilLogin = (TextInputLayout) findViewById(R.id.til_login);
             TextInputLayout tilSenha = (TextInputLayout) findViewById(R.id.til_senha);
 
-            //seta o login e a senha que vinheram do banco
-            tilLogin.getEditText().setText("");
-            tilSenha.getEditText().setText("");
-
+            //se não entrar no if, é porque é a primeira vez que o app é aberto e ainda não há funcionário cadastrado.
+            Funcionario funcionario = Funcionario.load(Funcionario.class,1);
+            if(funcionario != null) {
+                tilLogin.getEditText().setText(funcionario.getLogin());
+                tilSenha.getEditText().setText(funcionario.getSenha());
+            }
         }
 
     }
@@ -96,6 +104,14 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             startActivity(new Intent(LoginActivity.this,CadastroFuncionarioActivity.class));
+        }
+    };
+
+    //listener "ESQUECEU OS DADOS"
+    private View.OnClickListener onClickEsqueceuDados = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            startActivity(new Intent(LoginActivity.this,EsqueceuLogin.class));
         }
     };
 
@@ -110,21 +126,33 @@ public class LoginActivity extends AppCompatActivity {
             String login = tilLogin.getEditText().getText().toString();
             String senha = tilSenha.getEditText().getText().toString();
 
-            //checa login no banco
+            //se não entrar no if, é porque é a primeira vez que o app é aberto e ainda não há funcionário cadastrado.
             Funcionario funcionario = Funcionario.load(Funcionario.class,1);
-            boolean login_correto = true;
+            if(funcionario != null) {
+                boolean login_correto = true;
 
-            if(funcionario.getLogin() == login) {
-                tilLogin.setError("Login errado. Tente novamente.");
-                login_correto = false;
+                if (!funcionario.getLogin().equals(login)) {
+                    tilLogin.setError("Login errado. Tente novamente.");
+                    login_correto = false;
 
-            }if(funcionario.getSenha() == senha) {
-                tilSenha.setError("Senha está errada. Tente se lembrar :)");
-                login_correto = false;
+                }
+                if (!funcionario.getSenha().equals(senha)) {
+                    tilSenha.setError("Senha está errada. Tente se lembrar :)");
+                    login_correto = false;
 
-            }if(login_correto)
-                startActivity(new Intent(context, MainActivity.class));
+                }
+                if (login_correto)
+                    startActivity(new Intent(context, MainActivity.class));
+            }else{
 
+                if(login.length() == 0) {
+                    tilLogin.setError("Login errado. Tente novamente.");
+                }
+                if(senha.length() == 0){
+                    tilSenha.setError("Senha está errada. Tente se lembrar :)");
+                }
+
+            }
 
         }
     };
@@ -234,4 +262,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void aumentaLayoutLogin(){
+
+        RelativeLayout relativeLayoutLogin = (RelativeLayout)findViewById(R.id.activity_login);
+        relativeLayoutLogin.setMinimumHeight(390);
+    }
 }

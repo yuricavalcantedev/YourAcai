@@ -39,7 +39,10 @@ public class Funcionario extends Model{
     public Funcionario(String codigo, String nome, String login, String senha,String data_nascimento, String sexo){
 
         super();
+        this.codigo = codigo;
         this.nome = nome;
+        this.login = login;
+        this.senha = senha;
         this.data_nascimento = data_nascimento;
         this.sexo = sexo;
 

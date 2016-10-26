@@ -39,6 +39,13 @@ public class FragmentVendaListaItens extends Fragment {
     TextView tvTotalPedidoDialog;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //Returning the layout file after inflating
@@ -120,10 +127,37 @@ public class FragmentVendaListaItens extends Fragment {
                         }
                     }
                 });
+
                 CheckBox cbTaxaEntrega = (CheckBox) dialog_customer_layout.findViewById(R.id.cb_taxa_entrega);
                 cbTaxaEntrega.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        //quando a pessoa apertar na taxa de entrega, ela vai estar deixando a caixa de texto, então eu faço a conta do cliente
+                        //se o radiobutton "À vista" estiver clicado.
+
+                        if(rb_forma_pagamento_avista.isChecked()) {
+                            TextView tv_aviso = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_aviso);
+
+                            try{
+
+                                dinheiroCliente = Double.parseDouble(et_troco_para.getText().toString());
+                                tv_troco_cliente.setVisibility(View.VISIBLE);
+
+                                if (dinheiroCliente < total) {
+
+                                    tv_aviso.setText("Dinheiro insuficiente");
+                                } else {
+
+                                    tv_troco_cliente.setText((dinheiroCliente - total) + "");
+                                }
+                            }catch (Exception ex){
+
+                                tv_aviso.setText("Coloque apenas números.");
+                            }
+
+
+                        }
                         if(isChecked){
                             rbValorEntrega1.setVisibility(View.VISIBLE);
                             rbValorEntrega2.setVisibility(View.VISIBLE);
@@ -194,6 +228,7 @@ public class FragmentVendaListaItens extends Fragment {
                             tv_texto_cliente.setVisibility(View.INVISIBLE);
                             tv_troco_cliente.setVisibility(View.INVISIBLE);
                             rb_forma_pagamento_avista.setChecked(false);
+                            et_troco_para.setText("");
 
                         }
                     }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.yuri.youracai.Activitys.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+    </android.support.design.widget.AppBarLayout>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_esqueceu_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.yuri.youracai.Activitys.EsqueceuLogin"
+    android:background="@color/colorPrimary">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:inputType="textPersonName"
+        android:text=""
+        android:background="@drawable/drawable_edit_text_fundo_branco"
+        android:ems="10"
+        android:layout_below="@+id/tv_digite_codigo_esqueceu_login"
+        android:layout_alignStart="@+id/tv_digite_codigo_esqueceu_login"
+        android:id="@+id/et_codigo_esqueceu_login"
+        android:layout_alignEnd="@+id/tv_digite_codigo_esqueceu_login" />
+
+    <TextView
+        android:text="Digite o seu código de acesso:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="207dp"
+        android:id="@+id/tv_digite_codigo_esqueceu_login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Recuperar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_codigo_esqueceu_login"
+        android:layout_alignEnd="@+id/et_codigo_esqueceu_login"
+        android:layout_marginTop="12dp"
+        android:id="@+id/bt_recuperar"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@android:color/background_light" />
+</RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,142 +14,151 @@
 
     </android.support.design.widget.AppBarLayout>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_login"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.yuri.youracai.Activitys.LoginActivity"
-    android:background="@color/colorPrimary">
-
-    <TextView
-        android:text="Alex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_alex"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:textSize="36sp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/tv_do"
-        android:textColor="@android:color/background_light" />
-
-    <TextView
-        android:text="Açai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        android:textSize="36sp"
-        android:textColor="@android:color/background_light"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="do"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_do"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:textColor="@android:color/background_light"
-        android:layout_below="@+id/textView7"
-        android:layout_centerHorizontal="true" />
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="330dp"
-        android:background="#fffffd"
-        android:id="@+id/relativeLayout"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@+id/tv_alex"
-        android:layout_centerHorizontal="true">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
-        <android.support.design.widget.TextInputLayout
+        <RelativeLayout
+            android:id="@+id/activity_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/til_login"
-            android:layout_alignParentStart="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            tools:context="com.yuri.youracai.Activitys.LoginActivity"
+            android:background="@color/colorPrimary">
 
-            <EditText
-                android:layout_width="match_parent"
+            <TextView
+                android:text="Alex"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Login"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/tv_alex"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textSize="36sp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_do"
+                android:layout_marginBottom="10dp"
+                android:textColor="@android:color/background_light" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/til_senha"
-            android:layout_below="@+id/til_login"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:layout_width="match_parent"
+            <TextView
+                android:text="Açai"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Senha"
-                android:inputType="textPassword" />
-        </android.support.design.widget.TextInputLayout>
+                android:id="@+id/textView7"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textSize="36sp"
+                android:textColor="@android:color/background_light"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
-        <Button
-            android:text="Entrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cb_salvar_informacoes"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/bt_login"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:background="#43A047"
-            android:textColor="@android:color/background_light" />
+            <TextView
+                android:text="do"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_do"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:textColor="@android:color/background_light"
+                android:layout_below="@+id/textView7"
+                android:layout_centerHorizontal="true" />
 
-        <CheckBox
-            android:text="Salvar Informações"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cb_salvar_informacoes"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/til_senha"
-            android:layout_alignEnd="@+id/til_senha" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#fffffd"
+                android:id="@+id/relativeLayout"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/tv_alex"
+                android:layout_centerHorizontal="true"
+                android:layout_height="330dp">
 
-        <TextView
-            android:text="Ainda não é cadastrado? "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:id="@+id/tv_cadastrado_login"
-            android:textSize="18sp"
-            android:layout_below="@+id/bt_login"
-            android:layout_centerHorizontal="true" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/til_login"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
 
-        <TextView
-            android:text="Clique aqui!"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:id="@+id/tv_cadastre_aqui"
-            android:layout_marginLeft="5dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_below="@+id/tv_cadastrado_login"
-            android:layout_centerHorizontal="true" />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Login"
+                        android:inputType="text" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/til_senha"
+                    android:layout_below="@+id/til_login"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Senha"
+                        android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:text="Entrar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_salvar_informacoes"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/bt_login"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="#43A047"
+                    android:textColor="@android:color/background_light" />
+
+                <CheckBox
+                    android:text="Salvar Informações"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cb_salvar_informacoes"
+                    android:layout_marginRight="10dp"
+                    android:layout_below="@+id/til_senha"
+                    android:layout_alignEnd="@+id/til_senha" />
+
+                <TextView
+                    android:text="Clique aqui!"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/tv_cadastre_aqui"
+                    android:layout_marginLeft="5dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:layout_below="@+id/tv_cadastrado_login"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:text="Ainda não é cadastrado? "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:id="@+id/tv_cadastrado_login"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/bt_login"
+                    android:layout_centerHorizontal="true" />
 
 
-    </RelativeLayout>
-</RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
 </android.support.design.widget.CoordinatorLayout>

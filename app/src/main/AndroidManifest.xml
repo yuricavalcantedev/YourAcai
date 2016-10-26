@@ -22,20 +22,16 @@
         <activity
             android:name=".Activitys.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ProdutosMain" />
         <activity android:name=".Activitys.AdicionarProdutoActivity" />
         <activity android:name=".Activitys.VerProdutosActtivity" />
         <activity android:name=".Activitys.LoginActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Activitys.CadastroFuncionarioActivity" />
         <activity android:name=".Activitys.PerfilActivity" />
@@ -43,9 +39,9 @@
         <activity
             android:name=".Activitys.VendaActivity"
             android:label="@string/title_activity_venda"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activitys.EsqueceuLogin" />
+        <activity android:name=".Activitys.PerfilFuncionario"></activity>
     </application>
 
 </manifest>

@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/after_login_background_color"
+            android:background="@color/colorPrimaryDark"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/notification_bar_color" />
+            app:tabIndicatorColor="@color/colorPrimary_schemaColor1" />
 
     </android.support.design.widget.AppBarLayout>
 
