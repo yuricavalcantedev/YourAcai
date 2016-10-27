@@ -180,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
     private void fillBancoPrimeiraVez(){
 
         String[] listaCategoria = new String[]{
-                "Açai","Creme","Sanduiche Natural","Salada de Fruta",
+                "Açai","Creme","Sanduíche Natural","Salada de Fruta",
                 "Adicional de Fruta","Adicional de Calda","Adicional Condimento" };
 
         for(int i = 0; i< listaCategoria.length; i++)
@@ -188,59 +188,89 @@ public class LoginActivity extends AppCompatActivity {
 
         String[] listaProdutosNome = new String[]{
 
-                "TRAD. ATUM","TRAD. FRANGO COM MILHO", "TRAD. FRANGO COM REQUEIJÃO","TRAD. PEITO DE PERU","GOUR. FRANGO COM TOMATE",
-                "GOUR. PERU COM MOLHO ITALIANO", "GOUR. PERU COM CHEDAR E QUEIJO MINAS","CREME DE NINHO 100 ML","CREME DE NINHO 140 ML","CREME DE NINHO 250 ML",
-                "CREME DE NINHO 1 L","CREME DE AMENDOIM 100 ML","CREME DE AMENDOIM 140 ML","CREME DE AMENDOIM 250 ML", "CREME DE MARACUJÁ 100 ML"
-                ,"CREME DE MARACUJÁ 140 ML", "CREME DE OVOMALTINE 100 ML","CREME DE OVOMALTINE 140 ML", "CREME DE CUPUAÇU 100 ML", "CREME DE CUPUAÇU 140 ML",
-                "CREME DE CUPUAÇU 250 ML", "CREME DE CUPUAÇU + MORANGO 250 ML", "CREME DE CUPUAÇU 1 L", "SALADA DE POTE 250 ML", "SALADA DE POTE 380 ML",
-                "SALADA DE POTE 500 ML", "SALADA DE POTE 780 ML", "SALADA DE POTE 1 L", "BANANA", "MORANGO",
-                "MANGA", "MAÇA", "KIWI","UVA PASSA", "CEREJA",
-                "CHOCOLATE",  "MORANGO", "LEITE CONDENSADO", "AMENDOIM","AVEIA",
-                "BIS PRETO", "BIS BRANCO", "BATOM PRETO", "BATOM BRANCO", "COCO RALADO",
-                "CEREAIS", "CHOCOPOWER BALL","NUTELLA", "SERENATA DE AMOR", "DSIQUETI",
-                "FLOCOS DE TAPÍOCA", "FLOCOS DE ARROZ", "PAÇOQUITA", "OVOMALTINE", "FARINHA LÁCTEA",
-                "GRANOLA", "LEITE NINHO","NESTON", "GOSTAS DE CHOCOLATE","COPO 400 ML",
+                "COPO 400 ML",
                 "COPO 500 ML SIMPLES", "COPO 500 ML COMPLETO", "COPO 500 ML ESPECIAL", "CASADINHO NO POTE 380 ML","CASADINHO NO POTE 500 ML",
                 "TRIO DE SABORES POTE 380 ML", "TRIO DE SABORES POTE 500 ML", "TRIO DE SABORES POTE 1 L", "TROPICAL NO POTE 250 ML", "TROPICAL NO POTE 380 ML",
                 "TROPICAL NO POTE 500 ML", "POTE 500 ML PURO","POTE 500 ML COM XAROPE",  "POTE 1 L PURO", "POTE 1 L COM XAROPE",
-                "POTE COMPLETO BATIDO COM XAROPE E LEITE 1 L" };
+                "POTE COMPLETO BATIDO COM XAROPE E LEITE 1 L",
+
+                "CREME DE NINHO 100 ML","CREME DE NINHO 140 ML","CREME DE NINHO 250 ML",
+                "CREME DE NINHO 1 L","CREME DE AMENDOIM 100 ML","CREME DE AMENDOIM 140 ML","CREME DE AMENDOIM 250 ML", "CREME DE MARACUJÁ 100 ML",
+                "CREME DE MARACUJÁ 140 ML", "CREME DE OVOMALTINE 100 ML","CREME DE OVOMALTINE 140 ML", "CREME DE CUPUAÇU 100 ML", "CREME DE CUPUAÇU 140 ML",
+                "CREME DE CUPUAÇU 250 ML", "CREME DE CUPUAÇU + MORANGO 250 ML", "CREME DE CUPUAÇU 1 L",
+
+                "TRAD. ATUM","TRAD. FRANGO COM MILHO", "TRAD. FRANGO COM REQUEIJÃO","TRAD. PEITO DE PERU","GOUR. FRANGO COM TOMATE",
+                "GOUR. PERU COM MOLHO ITALIANO", "GOUR. PERU COM CHEDAR E QUEIJO MINAS",
+
+                "SALADA DE POTE 250 ML", "SALADA DE POTE 380 ML",
+                "SALADA DE POTE 500 ML", "SALADA DE POTE 780 ML", "SALADA DE POTE 1 L",
+
+                "BANANA", "MORANGO", "MANGA", "MAÇA",
+                "KIWI","UVA PASSA", "CEREJA","UVA SEM CAROÇO",
+
+                "CHOCOLATE",  "MORANGO", "LEITE CONDENSADO",
+
+                "AMENDOIM","AVEIA",
+                "BIS PRETO", "BIS BRANCO", "BATOM PRETO", "BATOM BRANCO", "COCO RALADO",
+                "CEREAIS", "CHOCOPOWER BALL","NUTELLA", "SERENATA DE AMOR", "DSIQUETI",
+                "FLOCOS DE TAPÍOCA", "FLOCOS DE ARROZ", "PAÇOQUITA", "OVOMALTINE", "FARINHA LÁCTEA",
+                "GRANOLA", "LEITE NINHO","NESTON", "GOSTAS DE CHOCOLATE", };
 
         double [] listaPrecosProdutos = new double[]{
 
-                5.5, 5.5,5.5, 5.5,6,
-                6,6,2.5,3.5,6.5,28,
-                2.5,3.5,6.5,2.5,3.5,
-                2.5,3.5,2.5,3.5,6.5,
-                9.5,28,5.5,8, 10.5,
-                16,27,1.5,3,1.5,
-                1.5,3,2,2.5,1.5,1.5,
-                2,1.5,1,1.5, 1.5,
+                6,7,8,9,10,
+                12,11,14,28,6.5,
+                9,13,8,8,15,
+                15,19,
+
+                2.5,3.5,6.5,28,2.5,
+                3.5,6.5,2.5,3.5,2.5,
+                3.5,2.5,3.5,6.5,9.5,
+                28,
+
+                5.5,5.5,5.5,5.5,6,
+                6,6,
+
+                5.5,8,10.5,16,27,
+
+                1.5,3,1.5,1.5,3,
+                2,2.5,3,
+
+                1.5,1.5,2,
+
+                1.5,1,1.5, 1.5,
                 1.5, 1.5,1,1.5,1.5, 2.5,
                 1.5,1.5,1.5,1.5,1,2,
                 1.5,1.5, 2, 1.5,1.5,
-                6, 7,8, 9,10,
-                12,11,14,28,6.5,
-                9,13, 8,8, 15,15,
-                19
+
         };
 
         int [] listaIdCategoriaProdutos = new int[]{
+                1,1,1,1,1,
+                1,1,1,1,1,
+                1,1,1,1,1,
+                1,1,
+
+                2,2,2,
+                2,2,2,2,2,
+                2,2,2,2,2,
+                2,2,2,
+
                 3,3,3,3,3,
-                3,3,2,2,2,
-                2,2,2,2,2,
-                2,2,2,2,2,
-                2,2,2,4,4,
-                4,4,4,5,5,
+                3,3,
+
+                4,4,4,4,4,
+
                 5,5,5,5,5,
-                6,6,6,7,7,
+                5,5,5,
+
+                6,6,6,
+
+                7,7,
                 7,7,7,7,7,
                 7,7,7,7,7,
                 7,7,7,7,7,
-                7,7,7,7,1,
-                1,1,1,1,1,
-                1,1,1,1,1,
-                1,1,1,1,1,
-                1 };
+                7,7,7,7 };
 
         // using transaction increase the speed of inserts a lot.
         ActiveAndroid.beginTransaction();
@@ -266,5 +296,12 @@ public class LoginActivity extends AppCompatActivity {
 
         RelativeLayout relativeLayoutLogin = (RelativeLayout)findViewById(R.id.activity_login);
         relativeLayoutLogin.setMinimumHeight(390);
+    }
+
+    private void diminuiLayoutLogin(){
+
+        RelativeLayout relativeLayoutLogin = (RelativeLayout)findViewById(R.id.activity_login);
+        relativeLayoutLogin.setMinimumHeight(330);
+
     }
 }

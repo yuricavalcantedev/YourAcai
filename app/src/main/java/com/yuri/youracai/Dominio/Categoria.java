@@ -57,4 +57,14 @@ public class Categoria extends Model{
         return list.get(0).getNome();
 
     }
+
+    public static int getIdByName(String nome){
+
+        List<Categoria> list = new Select().from(Categoria.class).where("nome = '"+nome+"'").execute();
+
+        String id = list.get(0).getId()+"";
+        int idRetorno = Integer.parseInt(id);
+        return idRetorno;
+
+    }
 }

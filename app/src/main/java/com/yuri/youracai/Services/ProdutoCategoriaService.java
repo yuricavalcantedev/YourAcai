@@ -2,6 +2,9 @@ package com.yuri.youracai.Services;
 
 import android.content.Context;
 
+import com.yuri.youracai.Dominio.Produto;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,52 +19,23 @@ public class ProdutoCategoriaService {
 
         HashMap<String, List<String>> expandableListDetail = new HashMap<>();
 
-//        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
-//        databaseAccess.open();
-//
-//        List<String> categoria_acai = databaseAccess.getProdutosPorCategoria(1);
-//        List<String> acai = new ArrayList<>();
-//        for(int i = 0; i < categoria_acai.size(); i++)
-//            acai.add(categoria_acai.get(i));
-//
-//        List<String> categoria_cremes = databaseAccess.getProdutosPorCategoria(2);
-//        List<String> cremes = new ArrayList<>();
-//        for(int i = 0; i < categoria_cremes.size(); i++)
-//            cremes.add(categoria_cremes.get(i));
-//
-//
-//        List<String> categoria_sanduiche = databaseAccess.getProdutosPorCategoria(3);
-//        List<String> sanduiche = new ArrayList<>();
-//        for(int i = 0; i < categoria_sanduiche.size(); i++)
-//            sanduiche.add(categoria_sanduiche.get(i));
-//
-//        List<String> categoria_salada_fruta = databaseAccess.getProdutosPorCategoria(4);
-//        List<String> salada_fruta = new ArrayList<>();
-//        for(int i = 0; i < categoria_salada_fruta.size(); i++)
-//            salada_fruta.add(categoria_salada_fruta.get(i));
-//
-//        List<String> categoria_adicional_fruta = databaseAccess.getProdutosPorCategoria(5);
-//        List<String> adicional_fruta = new ArrayList<>();
-//        for(int i = 0; i < categoria_adicional_fruta .size(); i++)
-//            adicional_fruta.add(categoria_adicional_fruta.get(i));
-//
-//        List<String> categoria_adicional_calda  = databaseAccess.getProdutosPorCategoria(6);
-//        List<String> adicional_calda = new ArrayList<>();
-//        for(int i = 0; i < categoria_adicional_calda.size(); i++)
-//            adicional_calda.add(categoria_adicional_calda.get(i));
-//
-//        List<String> categoria_adicional_condimentos  = databaseAccess.getProdutosPorCategoria(7);
-//        List<String> adicional_condimento = new ArrayList<>();
-//        for(int i = 0; i < categoria_adicional_condimentos.size(); i++)
-//            adicional_condimento.add(categoria_adicional_condimentos.get(i));
-//
-//        expandableListDetail.put("Açais", acai);
-//        expandableListDetail.put("Cremes", cremes);
-//        expandableListDetail.put("Sanduíches Naturais", sanduiche);
-//        expandableListDetail.put("Saladas de Fruta", salada_fruta);
-//        expandableListDetail.put("Adicionais de Fruta", adicional_fruta);
-//        expandableListDetail.put("Adicionais de Calda", adicional_calda);
-//        expandableListDetail.put("Adicionais Condimentos", adicional_condimento);
+        //pega todos os produtos de todas as categorias
+        List<String> produtos_acai = Produto.getAllNameProdutosByCategoria(1);
+        List<String> produtos_creme = Produto.getAllNameProdutosByCategoria(2);
+        List<String> produtos_sanduiche = Produto.getAllNameProdutosByCategoria(3);
+        List<String> produtos_salada_fruta = Produto.getAllNameProdutosByCategoria(4);
+        List<String> produtos_adicional_fruta = Produto.getAllNameProdutosByCategoria(5);
+        List<String> produtos_adicional_calda = Produto.getAllNameProdutosByCategoria(6);
+        List<String> produtos_adicional_condimentos = Produto.getAllNameProdutosByCategoria(7);
+
+
+        expandableListDetail.put("Açais", produtos_acai);
+        expandableListDetail.put("Cremes", produtos_creme);
+        expandableListDetail.put("Sanduíches Naturais", produtos_sanduiche);
+        expandableListDetail.put("Saladas de Fruta", produtos_salada_fruta);
+        expandableListDetail.put("Adicionais de Fruta", produtos_adicional_fruta);
+        expandableListDetail.put("Adicionais de Calda", produtos_adicional_calda);
+        expandableListDetail.put("Adicionais Condimentos", produtos_adicional_condimentos);
 
         return expandableListDetail;
     }

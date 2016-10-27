@@ -85,4 +85,23 @@ public class Produto extends Model {
 
     }
 
+    public static List<String> getAllNameProdutosByCategoria(int id_categoria){
+
+        List<Produto> listaProdutos = new Select().from(Produto.class).where("id_categoria = "+id_categoria).execute();
+        List<String> listaNomeProdutos = new ArrayList<>();
+
+        for(Produto p : listaProdutos)
+            listaNomeProdutos.add(p.getNome());
+
+        return listaNomeProdutos;
+
+    }
+
+    public static Produto getProdutoByName(String productName){
+
+        List<Produto> produto = new Select().from(Produto.class).where("nome = '"+productName+"'").execute();
+
+        return produto.get(0);
+    }
+
 }

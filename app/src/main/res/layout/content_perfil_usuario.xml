@@ -15,7 +15,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Vendas nessa semana : 40"
+        android:text="Vendas de hoje : 40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

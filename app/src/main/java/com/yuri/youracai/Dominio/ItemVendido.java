@@ -111,4 +111,11 @@ public class ItemVendido extends Model {
         return Categoria.getNomeById( idCategoriaItem);
     }
 
+    public static void deletaItemSelecionado(String nomeItem){
+
+        List<ItemVendido> itemVendidoList = new Select().from(ItemVendido.class).where("id_venda = 0 AND nome_item = '" + nomeItem+"'").execute();
+        ItemVendido itemVendido = itemVendidoList.get(0);
+        itemVendido.delete();
+
+    }
 }

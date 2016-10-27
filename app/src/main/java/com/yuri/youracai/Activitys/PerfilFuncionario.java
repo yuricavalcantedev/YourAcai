@@ -25,6 +25,7 @@ public class PerfilFuncionario extends AppCompatActivity {
 
         ImageView imgFuncionario = (ImageView) findViewById(R.id.img_default_funcionario);
 
+        //TODO: pegar a quantidade de vendas de hoje e no total
         Funcionario funcionario = Funcionario.load(Funcionario.class, 1);
 
         //só precisa desse if, pois por padrão, a imagem já é masculina

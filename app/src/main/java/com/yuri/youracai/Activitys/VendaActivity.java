@@ -1,5 +1,6 @@
 package com.yuri.youracai.Activitys;
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yuri.youracai.Dominio.ItemVendido;
@@ -31,30 +33,24 @@ import static com.yuri.youracai.R.id.recyclerView;
 
 public class VendaActivity extends AppCompatActivity  {
 
-    //This is our tablayout
-    private TabLayout tabLayout;
-
-    //This is our viewPager
-    private ViewPager viewPager;
-
-    private RecyclerView recyclerView;
-
-    private List<ItemVendido> itensList = new ArrayList<>();
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venda);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+          // TODO: vou deixar sem Toolbar por enquanto, até achar uma forma de ficar mais bonito
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//
+//        toolbar.setTitle("Nova Venda");
+//        toolbar.setSubtitle("Açai do Alex");
+//        setSupportActionBar(toolbar);
+//
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -65,8 +61,25 @@ public class VendaActivity extends AppCompatActivity  {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if(tab.getPosition() == 1)
+                if(tab.getPosition() == 1){
+
                     notifyDataChangeMyRecylerView();
+
+                    List<ItemVendido> itensList = ItemVendido.getItensVendidosByVenda(0);
+                    double total = 0;
+
+                    for (int i = 0; i < itensList.size(); i++)
+                        total += itensList.get(i).getPrecoItem() * itensList.get(i).getQuantidadeItem();
+
+                    TextView tvSubTotal = (TextView) findViewById(R.id.tv_subtotal_lista_itens_venda);
+                    tvSubTotal.setText("R$ " + total);
+
+                    if(itensList.size() > 0){
+
+                        TextView tvNenhumItem = (TextView) findViewById(R.id.tv_nenhum_item_adicionado);
+                        tvNenhumItem.setVisibility(View.INVISIBLE);
+                    }
+                }
             }
 
             @Override
@@ -86,21 +99,17 @@ public class VendaActivity extends AppCompatActivity  {
     private void notifyDataChangeMyRecylerView(){
 
         //0 é o id da venda que ainda não finalizou.
-        itensList = ItemVendido.getItensVendidosByVenda(0);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        List<ItemVendido> itensList = ItemVendido.getItensVendidosByVenda(0);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mAdapter = new NovoPedidoAdapter(itensList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_venda, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -110,8 +119,8 @@ public class VendaActivity extends AppCompatActivity  {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id ==  android.R.id.home) {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);

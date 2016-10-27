@@ -10,7 +10,9 @@
         android:id="@+id/tv_nome_item"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_marginRight="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/tv_subtotal_item" />
 
     <View
         android:layout_width="fill_parent"

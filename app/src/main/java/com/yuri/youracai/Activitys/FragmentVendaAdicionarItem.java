@@ -46,7 +46,6 @@ public class FragmentVendaAdicionarItem extends Fragment {
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -147,7 +146,7 @@ public class FragmentVendaAdicionarItem extends Fragment {
                 ItemVendido itemVendido = new ItemVendido(0,nomeProduto,precoProduto,idCategoria,quantidadeProduto);
                 itemVendido.save();
 
-                Toast.makeText(getContext(), "Item added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Item adicionado", Toast.LENGTH_SHORT).show();
             }
         });
 
