@@ -1,5 +1,6 @@
 package com.yuri.youracai.Activitys;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import com.yuri.youracai.Dominio.Caixa;
 import com.yuri.youracai.Dominio.ItemVendido;
 import com.yuri.youracai.Dominio.Venda;
 import com.yuri.youracai.NovoPedidoAdapter;
@@ -82,17 +86,38 @@ public class MainActivity extends AppCompatActivity
         fab_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,VendaActivity.class));
+
+                GregorianCalendar calendar = new GregorianCalendar();
+                int dia = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+                int mes = calendar.get(GregorianCalendar.MONTH) + 1;
+                int ano = calendar.get(GregorianCalendar.YEAR);
+
+                boolean caixaJaAberto = Caixa.jaAberto(dia,mes,ano);
+
+                //se caixa já aberto, continuo o fluxo normal do programa.
+                if(caixaJaAberto) {
+
+                    startActivity(new Intent(MainActivity.this,VendaActivity.class));
+
+                }else{
+
+                    Toast.makeText(MainActivity.this, "Abra o caixa antes de começar a vender.", Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
     }
 
-//    @Override
-//    public void onResume() {
-//        super.onResume();  // Always call the superclass method first
-//         mAdapter.notifyDataSetChanged();
-//    }
+
+    @Override
+    protected void onResume() {
+        if(getIntent().getBooleanExtra("SAIR", false)){
+            finish();
+        }
+        super.onResume();
+    }
 
     @Override
     public void onBackPressed() {
@@ -120,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Toast.makeText(this, "Opção não disponível ainda", Toast.LENGTH_SHORT).show();
         }
         return true;
 
@@ -133,7 +158,25 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if(id == R.id.nav_abrir_caixa) {
-            //mostrar um snackbar para o usuario informando que o caixa foi aberto
+
+            GregorianCalendar calendar = new GregorianCalendar();
+            int dia = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+            int mes = calendar.get(GregorianCalendar.MONTH) + 1;
+            int ano = calendar.get(GregorianCalendar.YEAR);
+
+            boolean caixaJaAberto = Caixa.jaAberto(dia,mes,ano);
+
+            //se caixa já aberto, continuo o fluxo normal do programa.
+            //se nao abro o caixa.
+            if(caixaJaAberto) {
+
+                Toast.makeText(this, "Caixa já está aberto", Toast.LENGTH_SHORT).show();
+
+            }else{
+                Caixa caixa = new Caixa(true, dia,mes,ano);
+                caixa.save();
+                Toast.makeText(this, "Caixa aberto", Toast.LENGTH_SHORT).show();
+            }
 
         }else if(id == R.id.nav_venda) {
             startActivity(new Intent(this, VendaActivity.class));
@@ -144,11 +187,9 @@ public class MainActivity extends AppCompatActivity
         }else if(id == R.id.nav_perfil) {
             startActivity(new Intent(this, PerfilFuncionario.class));
         }else if(id == R.id.nav_configuracoes) {
-            startActivity(new Intent(this, ConfiguracoesActivity.class));
-        }else if(id == R.id.nav_configuracoes) {
-            startActivity(new Intent(this, ConfiguracoesActivity.class));
-        }else if(id == R.id.nav_fechar_caixa) {
-            // mostrar um progress dialog circular e então mostrar alguns dados do dia(se for o adm) se não já gerar o relatório e enviar para o email do adm.
+            Toast.makeText(this, "Opção não disponível ainda", Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.nav_fechar_caixa) {
+            fecharCaixa();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -156,5 +197,45 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void fecharCaixa(){
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        final int dia = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+        int mes = calendar.get(GregorianCalendar.MONTH) + 1;
+        int ano = calendar.get(GregorianCalendar.YEAR);
+
+        int qtdProdutosVendaDia = Caixa.quantidadeProdutosVendaDoDia(dia,mes,ano);
+
+        builder.setTitle("Dados de hoje:");
+        builder.setMessage("Quantidade de itens vendidos hoje : " + qtdProdutosVendaDia);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNeutralButton("Sair do app", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                Intent  it = new Intent(getApplicationContext(), MainActivity.class);
+                it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                it.putExtra("SAIR", true);
+                startActivity(it);
+
+
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+
+
+
+
+    }
 }

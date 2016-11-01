@@ -14,10 +14,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
 
         <RelativeLayout
             android:id="@+id/activity_login"
@@ -63,12 +59,20 @@
                 android:layout_below="@+id/textView7"
                 android:layout_centerHorizontal="true" />
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tv_alex"
+                android:background="@color/colorPrimary">
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:background="#fffffd"
                 android:id="@+id/relativeLayout"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_below="@+id/tv_alex"
                 android:layout_centerHorizontal="true"
                 android:layout_height="330dp">
@@ -155,9 +159,11 @@
 
 
             </RelativeLayout>
-        </RelativeLayout>
 
-    </ScrollView>
+
+            </ScrollView>
+
+        </RelativeLayout>
 
 
 

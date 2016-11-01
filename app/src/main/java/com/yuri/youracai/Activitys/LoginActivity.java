@@ -7,23 +7,22 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
+import com.yuri.youracai.Dominio.Caixa;
 import com.yuri.youracai.Dominio.Categoria;
 import com.yuri.youracai.Dominio.Funcionario;
 import com.yuri.youracai.Dominio.Produto;
 import com.yuri.youracai.R;
 
-import java.util.List;
+import java.util.GregorianCalendar;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -120,38 +119,38 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
 
-            TextInputLayout tilLogin = (TextInputLayout) findViewById(R.id.til_login);
-            TextInputLayout tilSenha = (TextInputLayout) findViewById(R.id.til_senha);
 
-            String login = tilLogin.getEditText().getText().toString();
-            String senha = tilSenha.getEditText().getText().toString();
+                TextInputLayout tilLogin = (TextInputLayout) findViewById(R.id.til_login);
+                TextInputLayout tilSenha = (TextInputLayout) findViewById(R.id.til_senha);
 
-            //se não entrar no if, é porque é a primeira vez que o app é aberto e ainda não há funcionário cadastrado.
-            Funcionario funcionario = Funcionario.load(Funcionario.class,1);
-            if(funcionario != null) {
-                boolean login_correto = true;
+                String login = tilLogin.getEditText().getText().toString();
+                String senha = tilSenha.getEditText().getText().toString();
 
-                if (!funcionario.getLogin().equals(login)) {
-                    tilLogin.setError("Login errado. Tente novamente.");
-                    login_correto = false;
+                //se não entrar no if, é porque é a primeira vez que o app é aberto e ainda não há funcionário cadastrado.
+                Funcionario funcionario = Funcionario.load(Funcionario.class, 1);
+                if (funcionario != null) {
+                    boolean login_correto = true;
 
-                }
-                if (!funcionario.getSenha().equals(senha)) {
-                    tilSenha.setError("Senha está errada. Tente se lembrar :)");
-                    login_correto = false;
+                    if (!funcionario.getLogin().equals(login)) {
+                        tilLogin.setError("Login errado. Tente novamente.");
+                        login_correto = false;
 
-                }
-                if (login_correto)
-                    startActivity(new Intent(context, MainActivity.class));
-            }else{
+                    }
+                    if (!funcionario.getSenha().equals(senha)) {
+                        tilSenha.setError("Senha está errada. Tente se lembrar :)");
+                        login_correto = false;
 
-                if(login.length() == 0) {
-                    tilLogin.setError("Login errado. Tente novamente.");
-                }
-                if(senha.length() == 0){
-                    tilSenha.setError("Senha está errada. Tente se lembrar :)");
-                }
+                    }
+                    if (login_correto)
+                        startActivity(new Intent(context, MainActivity.class));
+                } else {
 
+                    if (login.length() == 0) {
+                        tilLogin.setError("Login errado. Tente novamente.");
+                    }
+                    if (senha.length() == 0) {
+                        tilSenha.setError("Senha está errada. Tente se lembrar :)");
+                    }
             }
 
         }

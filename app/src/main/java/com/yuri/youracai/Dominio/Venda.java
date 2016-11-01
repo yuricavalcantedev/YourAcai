@@ -127,5 +127,32 @@ public class Venda extends Model {
 
     }
 
+    //aqui na verdade é a quantidade de produtos.
+    public static int getAllVendasDia(int dia, int mes, int ano){
+
+        List<Venda> listVenda = new Select().from(Venda.class).where("dia = "+ dia).and("mes = "+ mes).and("ano = " + ano).execute();
+        int qtdItens = 0;
+
+        for(int i = 0; i < listVenda.size(); i++)
+            qtdItens+= listVenda.get(i).getListaItensVendidos().size();
+
+        return qtdItens;
+    }
+
+    public static int quantidadeVendasDiaSemProdutosDia(int dia, int mes, int ano){
+
+        List<Venda> listVenda = new Select().from(Venda.class).where("dia = "+ dia).and("mes = "+ mes).and("ano = " + ano).execute();
+
+
+        return listVenda.size();
+    }
+
+    public static int quantidadeVendasDiaSemProdutosTotal( ){
+
+        List<Venda> listVenda = new Select().from(Venda.class).execute();
+
+
+        return listVenda.size();
+    }
 
 }

@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.yuri.youracai.Dominio.Caixa;
 import com.yuri.youracai.Dominio.Funcionario;
 import com.yuri.youracai.R;
+
+import java.util.GregorianCalendar;
 
 public class PerfilFuncionario extends AppCompatActivity {
 
@@ -31,6 +35,17 @@ public class PerfilFuncionario extends AppCompatActivity {
         //só precisa desse if, pois por padrão, a imagem já é masculina
         if(funcionario.getSexo().equals("Feminino"))
             imgFuncionario.setImageResource(R.drawable.ic_female);
+
+        GregorianCalendar calendar = new GregorianCalendar();
+        final int dia = calendar.get(GregorianCalendar.DAY_OF_MONTH);
+        int mes = calendar.get(GregorianCalendar.MONTH) + 1;
+        int ano = calendar.get(GregorianCalendar.YEAR);
+
+        TextView tvVendasHoje = (TextView) findViewById(R.id.tv_vendas_dia_perfil);
+        tvVendasHoje.setText("Vendas de hoje : "+ Caixa.quantidadeVendaDia(dia,mes,ano));
+
+        TextView tvVendasTotal = (TextView) findViewById(R.id.tv_vendas_total_perfil);
+        tvVendasTotal.setText("Vendas no total :" + Caixa.quantidadeVendaTotal());
 
     }
 

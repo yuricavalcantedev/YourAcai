@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/tv_vendas_semana"
+        android:id="@+id/tv_vendas_dia_perfil"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_below="@+id/tv_boas_vindas"
         android:layout_alignStart="@+id/tv_boas_vindas" />
@@ -29,9 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:id="@+id/tv_vendas_total"
+        android:id="@+id/tv_vendas_total_perfil"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:layout_below="@+id/tv_vendas_semana"
-        android:layout_alignStart="@+id/tv_vendas_semana" />
+        android:layout_below="@+id/tv_vendas_dia_perfil"
+        android:layout_alignStart="@+id/tv_vendas_dia_perfil" />
 
 </RelativeLayout>

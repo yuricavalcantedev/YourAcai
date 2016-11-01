@@ -9,6 +9,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,17 +29,20 @@ import com.yuri.youracai.Dominio.Venda;
 import com.yuri.youracai.NovoPedidoAdapter;
 import com.yuri.youracai.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class FragmentVendaListaItens extends Fragment {
 
     public static NovoPedidoAdapter mAdapter;
     double total;
     double dinheiroCliente;
-    boolean taxaEntregaDescontada = false;
     TextView tvTotalPedidoDialog;
+    boolean disableRadioButtonByCheckBox = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,12 +79,12 @@ public class FragmentVendaListaItens extends Fragment {
         else
             tvNenhumItemAdicionado.setVisibility(View.INVISIBLE);
 
-        total = 0;
+        //total = 0;
 
         for (int i = 0; i < itensList.size(); i++)
             total += itensList.get(i).getPrecoItem() * itensList.get(i).getQuantidadeItem();
 
-        TextView tvSubTotal = (TextView) layoutView.findViewById(R.id.tv_subtotal_lista_itens_venda);
+        final TextView tvSubTotal = (TextView) layoutView.findViewById(R.id.tv_subtotal_lista_itens_venda);
         tvSubTotal.setText("R$ " + total);
 
         Button bt_finalizar_compra = (Button) layoutView.findViewById(R.id.bt_finalizar_pedido);
@@ -94,7 +99,12 @@ public class FragmentVendaListaItens extends Fragment {
                 final View dialog_customer_layout = layoutInflater.inflate(R.layout.dialog_finalizar_compra, null);
 
                 tvTotalPedidoDialog = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_total);
-                tvTotalPedidoDialog.setText(total + "");
+
+                //para atualizar o total do dialog.
+                String totalTxt = tvSubTotal.getText().toString();
+                totalTxt = totalTxt.substring(3,totalTxt.length());
+
+                tvTotalPedidoDialog.setText(totalTxt);
 
                 final RadioButton rbValorEntrega1 = (RadioButton) dialog_customer_layout.findViewById(R.id.rb_taxa_entrega_valor_1);
                 final RadioButton rbValorEntrega2 = (RadioButton) dialog_customer_layout.findViewById(R.id.rb_taxa_entrega_valor_2);
@@ -106,26 +116,55 @@ public class FragmentVendaListaItens extends Fragment {
                 final TextView tv_troco_cliente = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_troco_cliente);
 
 
-                et_troco_para.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                et_troco_para.addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                       //sem esa parte de ver se o rb do cartão não está checkado, vai dar erro porque
-                       //se não vai entrar aqui e querer converter um "" em double e vai querer o app.
-                        if (!hasFocus && !rb_forma_pagamento_cartao.isChecked()) {
+                        // TODO Auto-generated method stub
+                    }
 
-                            dinheiroCliente = Double.parseDouble(et_troco_para.getText().toString());
-                            tv_troco_cliente.setVisibility(View.VISIBLE);
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                            if (dinheiroCliente < total) {
+                        // TODO Auto-generated method stub
+                    }
 
-                                TextView tv_aviso = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_aviso);
-                                tv_aviso.setText("Dinheiro insuficiente");
-                            } else {
+                    @Override
+                    public void afterTextChanged(Editable s) {
 
-                                tv_troco_cliente.setText((dinheiroCliente - total) + "");
+                        if(!rb_forma_pagamento_cartao.isChecked()){
+
+                            try{
+
+
+                                String dinheiroTexto =  et_troco_para.getText().toString();
+                                if(dinheiroTexto.length() > 0){
+
+                                    dinheiroCliente = Double.parseDouble(dinheiroTexto);
+                                    tv_troco_cliente.setVisibility(View.VISIBLE);
+
+                                    if (dinheiroCliente < total) {
+
+                                        TextView tv_aviso = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_aviso);
+                                        tv_aviso.setText("Dinheiro insuficiente");
+                                        tv_troco_cliente.setText("");
+                                    } else {
+
+                                        tvTotalPedidoDialog = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_total);
+
+                                        //para atualizar o total do dialog.
+
+                                        String totalTxt = tvSubTotal.getText().toString();
+                                        totalTxt = totalTxt.substring(3,totalTxt.length());
+                                        tv_troco_cliente.setText((dinheiroCliente - Double.parseDouble(totalTxt)) + "");
+                                    }
+                                }
+
+
+                            }catch (Exception ex){
+                                Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+
                             }
-
                         }
                     }
                 });
@@ -141,31 +180,36 @@ public class FragmentVendaListaItens extends Fragment {
                         if (isChecked) {
                             rbValorEntrega1.setVisibility(View.VISIBLE);
                             rbValorEntrega2.setVisibility(View.VISIBLE);
-                            taxaEntregaDescontada = false;
+                            disableRadioButtonByCheckBox = false;
 
                         } else {
 
-                            //esse if e else aqui é para tirar o valor da entrega do total, caso a checkBox seja marcada e desmarcada uma vez.
-                            if (!taxaEntregaDescontada) {
+                            TextView tvSubTotal = (TextView) dialog_customer_layout.findViewById(R.id.tv_dialog_total);
+                            total = Double.parseDouble(tvSubTotal.getText().toString());
 
-                                if (rbValorEntrega1.isChecked())
-                                    total -= 1;
-                                else
-                                    total -= 2;
+                            if (rbValorEntrega1.isChecked())
+                                total -= 1;
+                            else
+                                total -= 2;
 
-                                taxaEntregaDescontada = true;
-                            }
+
+                            tvSubTotal.setText(total+"");
 
                             rbValorEntrega1.setVisibility(View.INVISIBLE);
                             rbValorEntrega2.setVisibility(View.INVISIBLE);
+                            rbValorEntrega1.setChecked(false);
+                            rbValorEntrega2.setChecked(false);
+                            disableRadioButtonByCheckBox = true;
+
                         }
+
                     }
                 });
 
                 rbValorEntrega1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
+                        if (isChecked && !disableRadioButtonByCheckBox) {
                             rbValorEntrega2.setChecked(false);
                             tvTotalPedidoDialog.setText((total + 1) + "");
                             atualizaTrocoCliente(rb_forma_pagamento_avista,dialog_customer_layout,et_troco_para,tv_troco_cliente,1);
@@ -176,7 +220,7 @@ public class FragmentVendaListaItens extends Fragment {
                 rbValorEntrega2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (isChecked) {
+                        if (isChecked && !disableRadioButtonByCheckBox) {
                             rbValorEntrega1.setChecked(false);
                             tvTotalPedidoDialog.setText((total + 2) + "");
                             atualizaTrocoCliente(rb_forma_pagamento_avista,dialog_customer_layout,et_troco_para,tv_troco_cliente,2);
@@ -192,12 +236,18 @@ public class FragmentVendaListaItens extends Fragment {
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (isChecked) {
 
-                            tv_troco_para.setVisibility(View.VISIBLE);
-                            et_troco_para.setText("");
-                            et_troco_para.setVisibility(View.VISIBLE);
-                            tv_texto_cliente.setVisibility(View.VISIBLE);
-                            tv_troco_cliente.setVisibility(View.VISIBLE);
-                            rb_forma_pagamento_cartao.setChecked(false);
+                            try{
+                                tv_troco_para.setVisibility(View.VISIBLE);
+                                et_troco_para.setText("");
+                                et_troco_para.setVisibility(View.VISIBLE);
+                                tv_texto_cliente.setVisibility(View.VISIBLE);
+                                tv_troco_cliente.setVisibility(View.VISIBLE);
+                                rb_forma_pagamento_cartao.setChecked(false);
+
+                            }catch (Exception ex){
+                                Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
 
                         }
                     }
@@ -334,7 +384,7 @@ public class FragmentVendaListaItens extends Fragment {
                     tv_aviso.setText("Dinheiro insuficiente");
                 } else {
 
-                    tv_troco_cliente.setText(((dinheiroCliente + taxaEntrega)  - total) + "");
+                    tv_troco_cliente.setText((dinheiroCliente - total) - taxaEntrega + "");
                 }
             } catch (Exception ex) {
 

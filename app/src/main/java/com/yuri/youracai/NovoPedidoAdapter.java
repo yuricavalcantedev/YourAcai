@@ -36,6 +36,7 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         tvPrecoTotal = (TextView) view.findViewById(R.id.tv_subtotal_item);
     }
 
+
 }
 
     public NovoPedidoAdapter(List<ItemVendido> produtoList) {
@@ -46,6 +47,8 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_adicionado_venda, parent, false);
+
+
 
         return new MyViewHolder(itemView);
     }

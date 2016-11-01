@@ -78,7 +78,9 @@
         android:checked="false"
         android:layout_below="@+id/et_dialog_troco_para"
         android:layout_toStartOf="@+id/rb_pagamento_cartao"
-        android:layout_marginTop="12dp" />
+        android:layout_marginTop="12dp"
+        android:visibility="invisible"
+        android:enabled="false" />
 
     <EditText
         android:layout_height="wrap_content"
@@ -90,18 +92,6 @@
         android:visibility="invisible"
         android:layout_alignTop="@+id/tv_troco_para"
         android:layout_alignEnd="@+id/rb_pagamento_cartao" />
-
-    <TextView
-        android:text="Total:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/rb_taxa_entrega_valor_1"
-        android:id="@+id/textView10"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/rb_taxa_entrega_valor_1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text=" "
@@ -157,6 +147,16 @@
         android:layout_marginBottom="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:text="Total:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/background_light"
+        android:layout_below="@+id/et_dialog_troco_para"
+        android:layout_alignStart="@+id/cb_taxa_entrega" />
 
 
 </RelativeLayout>

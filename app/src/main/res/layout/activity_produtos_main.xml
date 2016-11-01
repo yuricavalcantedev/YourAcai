@@ -22,9 +22,7 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/activity_produtos_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -74,10 +72,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/background_light"
             android:fontFamily="monospace"
-            android:layout_marginTop="15dp"
+            android:layout_marginEnd="32dp"
             android:layout_below="@+id/img_ver_produtos"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="17dp" />
+            android:layout_marginTop="22dp" />
 
     </RelativeLayout>
 
